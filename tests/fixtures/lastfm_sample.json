@@ -1,0 +1,4 @@
+{"artists": {
+ "sza": {"artist": {"name": "SZA", "mbid": "", "url": "https://www.last.fm/music/SZA", "stats": {"listeners": "4123456", "playcount": "612345678"}, "tags": {"tag": [{"name": "rnb"}]}}},
+ "flo-milli": {"artist": {"name": "Flo Milli", "url": "https://www.last.fm/music/Flo+Milli", "stats": {"listeners": "812345", "playcount": ""}}}
+}}
