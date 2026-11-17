@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Today · Music Tracker</title>
   <meta name="description" content="Daily Deezer and Last.fm numbers for 15 artists.">
-  <meta name="theme-color" content="#6250d6">
+  <meta name="theme-color" content="#0b0a12">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script>
+    // Apply the saved theme (or the system's) before the page paints, so there is no flash.
+    (function () {
+      var t = null;
+      try { t = JSON.parse(localStorage.getItem("music-tracker-theme")); } catch (e) {}
+      if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>

@@ -167,3 +167,18 @@ export function barChart(container, { bars, fmtV, fmtAxis = fmtV }) {
   });
   el("line", { class: "baseline", x1: x(0), x2: x(0), y1: m.t, y2: H - m.b }, svg);
 }
+
+/** Tiny line for a list of values (nulls skipped), drawn in the given CSS color. */
+export function sparkline(values, color = "var(--accent)") {
+  const pts = values.map((v, i) => [i, v]).filter(p => p[1] !== null && p[1] !== undefined);
+  if (pts.length < 2) return `<svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="100" y1="15" y2="15" stroke="var(--grid)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-dasharray="4 4"/></svg>`;
+  const n = values.length - 1 || 1;
+  const lo = Math.min(...pts.map(p => p[1])), hi = Math.max(...pts.map(p => p[1]));
+  const y = v => hi === lo ? 15 : 27 - (v - lo) / (hi - lo) * 24;
+  const xy = pts.map(([i, v]) => [(i / n * 100).toFixed(2), y(v).toFixed(2)]);
+  const line = xy.map(([a, b], k) => `${k ? "L" : "M"}${a},${b}`).join("");
+  const area = `${line}L${xy[xy.length - 1][0]},30L${xy[0][0]},30Z`;
+  return `<svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${area}" fill="${color}" opacity=".12"/>
+    <path d="${line}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}

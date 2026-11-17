@@ -1,10 +1,11 @@
 // Service worker: online, every request goes to the network first (so pages and data
 // are always fresh) and the response is saved. Offline, the saved copy is served,
 // so the site still opens and shows the last data it loaded.
-const CACHE = "music-tracker-v1";
+const CACHE = "music-tracker-v2";
 const SHELL = [
   "./", "index.html", "browse.html", "trends.html",
-  "css/style.css", "js/common.js", "js/charts.js", "js/today.js", "js/browse.js", "js/trends.js",
+  "css/style.css", "js/common.js", "js/charts.js", "js/today.js", "js/browse.js", "js/trends.js", "js/artist.js",
+  "fonts/inter.woff2", "fonts/space-grotesk.woff2",
   "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png",
   "data/history.csv", "data/status.json",
 ];
