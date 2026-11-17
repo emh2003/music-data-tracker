@@ -1,18 +1,21 @@
 import { renderNav, loadData, datesIn, movesBetween, artistsOn, fmt, fmtPct, fmtSigned, compact, esc,
-         showError, store, cmp, LABELS, METRICS, SOURCE_OF } from "./common.js";
+         showError, store, cmp, avatar, reducedMotion, LABELS, METRICS, SOURCE_OF } from "./common.js";
 import { lineChart, barChart, SERIES } from "./charts.js";
+import { initArtistSheet } from "./artist.js";
 
 renderNav("trends.html");
 const app = document.getElementById("app");
 const SEL_KEY = "music-tracker-trend-selection";
 
-let rows = [], dates = [], names = new Map();
+let rows = [], dates = [], names = new Map(), images = new Map();
+let findingNo = 0;
 
 try {
   ({ rows } = await loadData());
   dates = datesIn(rows);
-  for (const r of rows) names.set(r.item_id, r.item);
+  for (const r of rows) { names.set(r.item_id, r.item); if (r.image) images.set(r.item_id, r.image); }
   render();
+  initArtistSheet(rows);
 } catch (e) {
   showError(app, e);
 }
@@ -42,7 +45,8 @@ function render() {
   if (!dates.length) { app.innerHTML = `<div class="card empty">No data yet.</div>`; return; }
   const span = `${dates[0]} to ${dates[dates.length - 1]} (${dates.length} day${dates.length > 1 ? "s" : ""})`;
   app.innerHTML = `
-    <h1>Trends</h1>
+    <div class="eyebrow">${span}</div>
+    <h1>The <span class="grad-text">trends</span> report</h1>
     <p class="lede">A report on the history the pipeline has built: ${span}. Every number below is computed in your browser from <code>data/history.csv</code>, so the page updates as the history grows.</p>
 
     <section class="card">
@@ -55,9 +59,21 @@ function render() {
       <div id="picker" class="chips" style="margin-bottom:14px"></div>
       <div id="main-chart"></div>
     </section>
+
+    <section class="card">
+      <div class="card-head"><h2>🏁 Leaderboard race</h2><span class="small muted">Drag the slider or press play to watch the rankings change day by day</span></div>
+      <div class="race-controls">
+        <button class="btn primary" id="race-play" type="button">▶ Play</button>
+        <select id="race-metric" aria-label="Value">${METRICS.map(m => `<option value="${m}"${m === "listeners" ? " selected" : ""}>${LABELS[m]}</option>`).join("")}</select>
+        <span class="race-date" id="race-date"></span>
+        <input type="range" id="race-day" min="0" max="${dates.length - 1}" value="${dates.length - 1}" aria-label="Day">
+      </div>
+      <div class="race" id="race"></div>
+    </section>
     <div id="findings"></div>`;
 
   setupMainChart();
+  setupRace();
   renderFindings();
 }
 
@@ -71,7 +87,7 @@ function setupMainChart() {
   const draw = () => {
     picker.innerHTML = ids.map(id => {
       const s = slots.get(id);
-      return `<button class="chip" data-id="${id}" aria-pressed="${!!s}"><span class="swatch" style="${s ? `background:var(--series-${s})` : ""}"></span>${esc(names.get(id))}</button>`;
+      return `<button class="chip" data-id="${id}" aria-pressed="${!!s}">${avatar({ item: names.get(id), image: images.get(id) }, "xs")}${esc(names.get(id))}<span class="swatch" style="${s ? `background:var(--series-${s})` : ""}"></span></button>`;
     }).join("");
     const metric = document.getElementById("metric").value;
     const mode = document.getElementById("mode").value;
@@ -111,11 +127,61 @@ function setupMainChart() {
   window.addEventListener("resize", () => { if (Math.abs(window.innerWidth - w) > 40) { w = window.innerWidth; draw(); } });
 }
 
+
+// ---------- leaderboard race ----------
+function setupRace() {
+  const box = document.getElementById("race");
+  const ROW = 40;
+  const ids = [...names.keys()].sort(cmp);
+  box.style.height = ids.length * ROW + "px";
+  box.innerHTML = ids.map(id => `<div class="race-row clickable" data-artist="${id}" data-id="${id}" tabindex="0">
+      <span class="pos"></span>
+      <span class="who">${avatar({ item: names.get(id), image: images.get(id) }, "sm")}<span class="name small">${esc(names.get(id))}</span></span>
+      <span class="bar-wrap"><div class="bar"></div><span class="val"></span></span></div>`).join("");
+  const metricSel = document.getElementById("race-metric"), slider = document.getElementById("race-day");
+  const playBtn = document.getElementById("race-play"), label = document.getElementById("race-date");
+  const draw = () => {
+    const m = metricSel.value, d = dates[Number(slider.value)];
+    label.textContent = d;
+    const vals = new Map(rows.filter(r => r.date === d && r.source === SOURCE_OF[m] && r[m] !== null).map(r => [r.item_id, r[m]]));
+    const order = [...ids].sort((a, b) => (vals.get(b) ?? -1) - (vals.get(a) ?? -1) || cmp(a, b));
+    const max = Math.max(1, ...vals.values());
+    order.forEach((id, i) => {
+      const row = box.querySelector(`[data-id="${CSS.escape(id)}"]`);
+      const v = vals.get(id);
+      row.style.transform = `translateY(${i * ROW}px)`;
+      row.querySelector(".pos").textContent = v === undefined ? "–" : i + 1;
+      const w = v === undefined ? 0 : v / max * 100;
+      row.querySelector(".bar").style.width = `calc(${w}% - ${w / 100 * 90}px)`;
+      const val = row.querySelector(".val");
+      val.textContent = v === undefined ? "no data" : compact(v);
+      val.style.left = `calc(${w}% - ${w / 100 * 90}px)`;
+    });
+  };
+  let timer = null;
+  const stop = () => { clearInterval(timer); timer = null; playBtn.textContent = "▶ Play"; };
+  playBtn.addEventListener("click", () => {
+    if (timer) return stop();
+    if (Number(slider.value) >= dates.length - 1) slider.value = 0;
+    playBtn.textContent = "❚❚ Pause";
+    draw();
+    timer = setInterval(() => {
+      if (Number(slider.value) >= dates.length - 1) return stop();
+      slider.value = Number(slider.value) + 1;
+      draw();
+    }, reducedMotion() ? 1200 : 900);
+  });
+  slider.addEventListener("input", () => { stop(); draw(); });
+  metricSel.addEventListener("change", draw);
+  if (dates.length < 2) { slider.disabled = true; playBtn.disabled = true; playBtn.title = "Needs at least two days"; }
+  draw();
+}
+
 // ---------- findings ----------
 function section(heading, paragraph, how, chartOpts, table) {
   const s = document.createElement("section");
   s.className = "card finding";
-  s.innerHTML = `<h2>${heading}</h2><p>${paragraph}</p><p class="how">How it's computed: ${how}</p><div class="fchart"></div>
+  s.innerHTML = `<div class="num-tag">FINDING ${++findingNo}</div><h2>${heading}</h2><p>${paragraph}</p><p class="how">How it's computed: ${how}</p><div class="fchart"></div>
     ${table ? `<details><summary>Show the numbers as a table</summary><div class="table-wrap">${table}</div></details>` : ""}`;
   document.getElementById("findings").appendChild(s);
   if (chartOpts) barChart(s.querySelector(".fchart"), chartOpts);
