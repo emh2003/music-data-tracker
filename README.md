@@ -109,18 +109,25 @@ counts once.
 
 ## Website
 
-Three pages share one navigation bar and one stylesheet. They load
+Three pages share one navigation bar, one stylesheet and one pair of fonts (Inter and
+Space Grotesk, stored in `site/fonts/` so they work offline). They load
 `data/history.csv` and `data/status.json` and do every calculation in the browser.
 
-- **Today** (`index.html`): time of the last run, the status of each source, the counts
-  from the status file, the latest values with their change since the previous run,
-  and the biggest moves.
-- **Browse** (`browse.html`): latest values for every artist, with filters (genre,
-  Last.fm listeners, Deezer fans, shortlist), a search box, sorting by every numeric
-  column up and down, and a ☆ star that saves an artist to a shortlist kept in the
-  browser's `localStorage`.
+- **Light and dark mode.** The ☾/☀ button in the navigation bar switches themes and
+  remembers the choice. Until you pick one, the site follows your device's setting.
+- **Artist cards.** Tap any artist on any page to open a pop-up with their photo, top
+  track, and every value with its change and a mini chart of all the days so far.
+- **Today** (`index.html`): a spotlight on the three biggest moves, the time of the last
+  run, the status of each source, the counts from the status file (animated), the
+  biggest moves with bars sized by percent change, and the latest values with their
+  change since the previous run.
+- **Browse** (`browse.html`): latest values for every artist, as cards or a table, with
+  filters (genre chips, Last.fm listeners, Deezer fans, shortlist only), a search box
+  (press `/` to jump to it), sorting by every numeric column up and down, and a ☆ star
+  that saves an artist to a shortlist kept in the browser's `localStorage`.
 - **Trends** (`trends.html`): a chart of each value over the days with an artist picker,
-  and five findings computed from the history, each with a chart and a table.
+  a leaderboard race you can scrub or play day by day, and five findings computed from
+  the history, each with a chart and a table.
 
 The site is installable as an app (`manifest.webmanifest` plus `sw.js`). Online, every
 request goes to the network first. Offline, the service worker serves the last copy it
@@ -152,10 +159,12 @@ saved, so the site still opens with the last data it loaded.
 | `data/status.json` | The latest run (see above) |
 | `data/run_log.csv` | Every source result of every run |
 | `site/index.html`, `site/browse.html`, `site/trends.html` | The three pages |
-| `site/css/style.css` | Shared fonts and colors |
-| `site/js/common.js` | Navigation, CSV loading, the move rule, formatting, shortlist storage |
-| `site/js/charts.js` | SVG line and bar charts with hover tooltips (no library, so it works offline) |
+| `site/css/style.css` | Shared fonts, colors, and the light and dark themes |
+| `site/js/common.js` | Navigation, theme toggle, CSV loading, the move rule, formatting, shortlist, toasts |
+| `site/js/charts.js` | SVG line charts, bar charts and sparklines with hover tooltips (no library, so it works offline) |
 | `site/js/today.js`, `site/js/browse.js`, `site/js/trends.js` | Code for each page |
+| `site/js/artist.js` | The artist pop-up card used on every page |
+| `site/fonts/` | Inter and Space Grotesk font files, with their licenses |
 | `site/manifest.webmanifest`, `site/sw.js`, `site/icons/` | Installable app: manifest, service worker, icons |
 | `tools/make_icons.py` | Redraws the PNG app icons |
 | `requirements.txt` | Python packages (`requests`, `pytest`) |
