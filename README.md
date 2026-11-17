@@ -52,6 +52,7 @@ empty. Rows are sorted by `date`, then `item_id`, then `source`.
 | `top_track_rank` | Deezer's popularity score for that track (`rank`; higher = more popular) | score (no unit) |
 | `listeners` | Last.fm listeners: unique people who have ever scrobbled the artist | people |
 | `playcount` | Last.fm plays: total scrobbles of the artist, all time | plays |
+| `image` | URL of the artist's photo on Deezer (`picture_medium`, 250×250), shown on the site | URL |
 
 The history file depends on the raw files alone. Rebuild it at any time with:
 

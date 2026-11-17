@@ -33,7 +33,8 @@ def convert_deezer(date, payload):
                  fans=_int(info.get("nb_fan")),
                  albums=_int(info.get("nb_album")),
                  top_track=top.get("title"),
-                 top_track_rank=_int(top.get("rank")))
+                 top_track_rank=_int(top.get("rank")),
+                 image=info.get("picture_medium") or None)
         if r:
             rows.append(r)
     return rows

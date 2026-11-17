@@ -59,7 +59,7 @@ def read_history(path):
         for r in csv.DictReader(f):
             for k in METRICS + ["albums"]:
                 r[k] = int(r[k]) if r[k] != "" else None
-            for k in ("top_track",):
+            for k in ("top_track", "image"):
                 r[k] = r[k] or None
             out.append(r)
     return out

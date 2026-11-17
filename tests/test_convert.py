@@ -15,6 +15,7 @@ def test_deezer_rows_have_common_columns(deezer_payload):
     assert fc["albums"] == 29
     assert fc["top_track"] == "A Life Where We Work Out"
     assert fc["top_track_rank"] == 347329
+    assert fc["image"].endswith("250x250-000000-80-0-0.jpg")
     # Deezer does not report Last.fm values: left empty
     assert fc["listeners"] is None and fc["playcount"] is None
 
@@ -24,6 +25,7 @@ def test_deezer_missing_top_track_left_empty(deezer_payload):
     assert by["green-day"]["fans"] == 5258936
     assert by["green-day"]["top_track"] is None
     assert by["green-day"]["top_track_rank"] is None
+    assert by["green-day"]["image"] is None
 
 
 def test_deezer_skips_untracked_artists(deezer_payload):

@@ -1,5 +1,5 @@
 {"artists": {
- "flatland-cavalry": {"artist": {"id": 7954262, "name": "Flatland Cavalry", "link": "https://www.deezer.com/artist/7954262", "nb_album": 29, "nb_fan": 2468, "radio": true, "type": "artist"},
+ "flatland-cavalry": {"artist": {"id": 7954262, "name": "Flatland Cavalry", "link": "https://www.deezer.com/artist/7954262", "nb_album": 29, "nb_fan": 2468, "picture_medium": "https://cdn-images.dzcdn.net/images/artist/906b6f29d6d6899622a9bcbf668cc8de/250x250-000000-80-0-0.jpg", "radio": true, "type": "artist"},
    "top": {"data": [{"id": 2607165222, "title": "A Life Where We Work Out", "duration": 190, "rank": 347329, "type": "track"}], "total": 92, "next": "https://api.deezer.com/artist/7954262/top?limit=1&index=1"}},
  "sza": {"artist": {"id": 5531258, "name": "SZA", "nb_album": 40, "nb_fan": 1349060, "type": "artist"},
    "top": {"data": [{"id": 1, "title": "Saturn, Pt. 2", "rank": 900000, "type": "track"}], "total": 50}},

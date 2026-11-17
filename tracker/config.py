@@ -31,7 +31,7 @@ SOURCES = ["deezer", "lastfm"]
 # Columns of data/history.csv. The first four are fixed by the assignment.
 COLUMNS = [
     "date", "item_id", "item", "source",
-    "genre", "fans", "albums", "top_track", "top_track_rank", "listeners", "playcount",
+    "genre", "fans", "albums", "top_track", "top_track_rank", "listeners", "playcount", "image",
 ]
 
 # Numeric columns, used by the move rule, the status file and the site.
