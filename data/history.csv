@@ -149,3 +149,33 @@ date,item_id,item,source,genre,fans,albums,top_track,top_track_rank,listeners,pl
 2026-11-21,tyler-childers,Tyler Childers,lastfm,Country,,,,,640774,43293963,
 2026-11-21,zara-larsson,Zara Larsson,deezer,Pop,1674980,84,Midnight Sun,897810,,,https://cdn-images.dzcdn.net/images/artist/6858acaacf2fd005e37f7d68e625b44c/250x250-000000-80-0-0.jpg
 2026-11-21,zara-larsson,Zara Larsson,lastfm,Pop,,,,,2586804,103757204,
+2026-11-22,21-savage,21 Savage,deezer,Hip-Hop,1539397,54,WTF GOIN (feat. 21 Savage),561915,,,https://cdn-images.dzcdn.net/images/artist/76b4cd56c7e94e8d2bdc3e2157e1080f/250x250-000000-80-0-0.jpg
+2026-11-22,21-savage,21 Savage,lastfm,Hip-Hop,,,,,2430458,228696907,
+2026-11-22,brent-faiyaz,Brent Faiyaz,deezer,R&B,350749,50,ROLLING STONE,566604,,,https://cdn-images.dzcdn.net/images/artist/b8e169149cdba38bbabcb8ec9d0388a8/250x250-000000-80-0-0.jpg
+2026-11-22,brent-faiyaz,Brent Faiyaz,lastfm,R&B,,,,,2187196,253016372,
+2026-11-22,don-toliver,Don Toliver,deezer,Hip-Hop,519027,72,E85,816901,,,https://cdn-images.dzcdn.net/images/artist/2670219ffd5035c27aab2295dca242dd/250x250-000000-80-0-0.jpg
+2026-11-22,don-toliver,Don Toliver,lastfm,Hip-Hop,,,,,2750354,311930799,
+2026-11-22,flatland-cavalry,Flatland Cavalry,deezer,Country,2476,29,West Texas in My Eye,472512,,,https://cdn-images.dzcdn.net/images/artist/906b6f29d6d6899622a9bcbf668cc8de/250x250-000000-80-0-0.jpg
+2026-11-22,flatland-cavalry,Flatland Cavalry,lastfm,Country,,,,,221268,5572200,
+2026-11-22,flo-milli,Flo Milli,deezer,Hip-Hop,86102,83,Never Lose Me,681162,,,https://cdn-images.dzcdn.net/images/artist/04ace0807930e404ada396fa5079c100/250x250-000000-80-0-0.jpg
+2026-11-22,flo-milli,Flo Milli,lastfm,Hip-Hop,,,,,1389359,38290201,
+2026-11-22,fontaines-dc,Fontaines D.C.,deezer,Alternative,147003,33,Mimesis,924162,,,https://cdn-images.dzcdn.net/images/artist/ee622eb8af3748a4e56c53c20f99a651/250x250-000000-80-0-0.jpg
+2026-11-22,fontaines-dc,Fontaines D.C.,lastfm,Alternative,,,,,1331297,93184365,
+2026-11-22,frank-ocean,Frank Ocean,deezer,R&B,1281812,16,Pink + White,857170,,,https://cdn-images.dzcdn.net/images/artist/882155c08dc31d6464d6d580083c968c/250x250-000000-80-0-0.jpg
+2026-11-22,frank-ocean,Frank Ocean,lastfm,R&B,,,,,4475801,815581225,
+2026-11-22,green-day,Green Day,deezer,Rock,5260595,85,American Idiot,828332,,,https://cdn-images.dzcdn.net/images/artist/690381cc69a21802b5d95b0460afb6a3/250x250-000000-80-0-0.jpg
+2026-11-22,green-day,Green Day,lastfm,Rock,,,,,6817443,464191320,
+2026-11-22,kacey-musgraves,Kacey Musgraves,deezer,Country,81531,32,The Vacation Song,549391,,,https://cdn-images.dzcdn.net/images/artist/229fe42ffc5b16b51112ffee967453e1/250x250-000000-80-0-0.jpg
+2026-11-22,kacey-musgraves,Kacey Musgraves,lastfm,Country,,,,,1200011,75010396,
+2026-11-22,led-zeppelin,Led Zeppelin,deezer,Rock,5563955,30,Stairway to Heaven (Remaster),923172,,,https://cdn-images.dzcdn.net/images/artist/2cf138b96a63da677ac6fb79846607c8/250x250-000000-80-0-0.jpg
+2026-11-22,led-zeppelin,Led Zeppelin,lastfm,Rock,,,,,5068112,349887768,
+2026-11-22,megan-thee-stallion,Megan Thee Stallion,deezer,Hip-Hop,941653,98,Thin Ice,754188,,,https://cdn-images.dzcdn.net/images/artist/55a20b812fec74d0a72d870545fc2123/250x250-000000-80-0-0.jpg
+2026-11-22,megan-thee-stallion,Megan Thee Stallion,lastfm,Hip-Hop,,,,,2503131,196945035,
+2026-11-22,sza,SZA,deezer,R&B,1350629,42,"Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",977567,,,https://cdn-images.dzcdn.net/images/artist/8ced041da2bed70d5715f0860956169b/250x250-000000-80-0-0.jpg
+2026-11-22,sza,SZA,lastfm,R&B,,,,,3693126,614267641,
+2026-11-22,tame-impala,Tame Impala,deezer,Alternative,1177815,41,"Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",977567,,,https://cdn-images.dzcdn.net/images/artist/879015e713cc6ad6ffaeec154c027505/250x250-000000-80-0-0.jpg
+2026-11-22,tame-impala,Tame Impala,lastfm,Alternative,,,,,4722167,457243230,
+2026-11-22,tyler-childers,Tyler Childers,deezer,Country,42709,19,Feathered Indians,528056,,,https://cdn-images.dzcdn.net/images/artist/d9f479230d72413e23ffb97a3f5ac45c/250x250-000000-80-0-0.jpg
+2026-11-22,tyler-childers,Tyler Childers,lastfm,Country,,,,,640991,43298257,
+2026-11-22,zara-larsson,Zara Larsson,deezer,Pop,1675550,83,Midnight Sun,897810,,,https://cdn-images.dzcdn.net/images/artist/6858acaacf2fd005e37f7d68e625b44c/250x250-000000-80-0-0.jpg
+2026-11-22,zara-larsson,Zara Larsson,lastfm,Pop,,,,,2586804,103757204,
