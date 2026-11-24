@@ -13,3 +13,5 @@ run_time,date,source,ok,count,error
 2026-11-22T20:24:55Z,2026-11-22,lastfm,True,15,
 2026-11-24T01:01:56Z,2026-11-24,deezer,True,15,
 2026-11-24T01:01:56Z,2026-11-24,lastfm,True,15,
+2026-11-24T23:06:59Z,2026-11-24,deezer,True,15,
+2026-11-24T23:06:59Z,2026-11-24,lastfm,True,15,
